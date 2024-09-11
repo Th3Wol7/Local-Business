@@ -1,7 +1,6 @@
 package com.localbusiness.ecommerce.product;
 
 
-
 import com.localbusiness.ecommerce.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
-import java.lang.reflect.Type;
 import java.util.List;
 
 import static org.springframework.http.HttpMethod.POST;
@@ -23,7 +20,7 @@ import static org.springframework.http.HttpMethod.POST;
 @RequiredArgsConstructor
 public class ProductClient {
 
-    @Value("{application.config.product-url}")
+    @Value("${application.config.product-url}")
     private String productUrl;
     private final RestTemplate restTemplate;
 
