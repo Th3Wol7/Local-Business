@@ -1,11 +1,13 @@
 package com.localbusiness.ecomerce.controller;
 
-import com.ctc.wstx.util.StringUtil;
 import com.localbusiness.ecomerce.customer.Customer;
 import com.localbusiness.ecomerce.exception.CustomerNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,5 +42,28 @@ public class CustomerService {
        if(request.address() != null){
            customer.setAddress(request.address());
        }
+    }
+
+    public List<CustomerResponse> findAllCustomers() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::fromCustomer)
+                .collect(Collectors.toList());
+
+    }
+
+    public Boolean existsById(String customerId) {
+        return repository.findById(customerId)
+                .isPresent();
+    }
+
+    public CustomerResponse findById(String customerId) {
+        return repository.findById(customerId)
+                .map(mapper::fromCustomer)
+                .orElseThrow(() -> new CustomerNotFoundException(String.format("No customer found with ID:: %s", customerId)));
+    }
+
+    public void deleteCustomer(String customerId) {
+        repository.deleteById(customerId);
     }
 }
