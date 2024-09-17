@@ -1,20 +1,29 @@
-datasource:
-  url: jdbc:postgresql://localhost:5432/payment
-  username: tuser
-  password: ms2024
-  driver-class-name: org.postgresql.Driver
-jpa:
-  hibernate:
-    ddl-auto: validate
-  database: postgresql
-  database-platform: org.hibernate.dialect.PostgreSQLDialect
-kafka:
-  producer:
-    bootstrap-servers: localhost:9092
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    properties:
-      spring.json.type.mapping: paymentConfirmation:com.localbusiness.ecommerce.notification.PaymentNotificationRequest
-
+Spring:
+  application:
+    name: payment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/payment
+    username: tuser
+    password: ms2024
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: paymentConfirmation:com.localbusiness.ecommerce.notification.PaymentNotificationRequest
+eureka:
+  instance:
+    instance:
+      prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 server:
   port: 8060
