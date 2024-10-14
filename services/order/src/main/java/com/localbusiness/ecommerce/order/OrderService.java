@@ -30,7 +30,7 @@ public class OrderService {
 
     public Integer createOrder(OrderRequest request) {
         //Check if customer exist
-        var customer = this.customerClient.findCustomerById(request.customerId())
+        var customer = this.customerClient.findById(request.customerId())
                 .orElseThrow(() -> new BusinessException("Cannot Create Order:: No Customer exists with the provided Id"));
 
         //Purchase the product --> product microservice (Using RestTemplate)

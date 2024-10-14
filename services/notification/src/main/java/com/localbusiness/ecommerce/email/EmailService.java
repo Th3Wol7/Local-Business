@@ -6,7 +6,6 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class EmailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_RELATED, UTF_8.name());
-        messageHelper.setFrom("contact@gilpinedu@gmail.com");
+        messageHelper.setFrom("gilpinedu@gmail.com");
         final String templateName = EmailTemplates.PAYMENT_CONFIRMATION.getTemplate();
 
         Map<String, Object> variables = new HashMap<>();
@@ -74,7 +73,7 @@ public class EmailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper =
                 new MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_RELATED, UTF_8.name());
-        messageHelper.setFrom("contact@gilpinedu@gmail.com");
+        messageHelper.setFrom("gilpinedu@gmail.com");
         final String templateName = EmailTemplates.ORDER_CONFIRMATION.getTemplate();
 
         Map<String, Object> variables = new HashMap<>();

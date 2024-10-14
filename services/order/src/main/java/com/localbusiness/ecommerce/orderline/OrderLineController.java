@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/order-lines")
+@RequestMapping("/api/v1/orderLines")
 @RequiredArgsConstructor
 public class OrderLineController {
     private final OrderLineService service;
 
-    @GetMapping("/order/{order-id}")
+    @GetMapping("/order/{orderId}")
     public ResponseEntity<List<OrderLineResponse>> findByOrderId(
-            @PathVariable("order-id") Integer orderId
+            @PathVariable("orderId") Integer orderId
     ){
         return ResponseEntity.ok(service.findAllByOrderId(orderId));
     }
